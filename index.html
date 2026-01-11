@@ -44,7 +44,8 @@ h2 {
 const params = new URLSearchParams(window.location.search);
 const id = params.get("id");
 
-const API_URL = "https://script.googleusercontent.com/macros/echo?user_content_key=AehSKLjFiY9hUuMZr4pW9LZ7fxH4L8gAJ9gxc0T6NxOZwtWz-i4c4aYkVcBjhB7qXJeCZngRjYP_FW-LaO69BuIDG2bEFJ7-du5mZ-Ls4leImzdQ2IKuUkUPlxpbYJGsT0qw_VsG60bPFh8RsVkj5ZYB1rscYoqVXHrdT-yM7eDpzzQXb973Qh56x5hLA_M6ERSAgLBO2DOsH9jNF8E5SH2Okti9OD4NN8eqfQbHlHVwZ2rROBF704kELm7tsLAATn8mZd65S3AmwNv_yH6jGRe_HpSHWtvSm53yTZHzu-Kv&lib=MlRpYdqkB5hM_CZ1Ay9kj7C5QW6e6C0Sl";
+const API_URL = "const API_URL = "https://corsproxy.io/?" + encodeURIComponent("https://script.googleusercontent.com/macros/echo?user_content_key=AehSKLjFiY9hUuMZr4pW9LZ7fxH4L8gAJ9gxc0T6NxOZwtWz-i4c4aYkVcBjhB7qXJeCZngRjYP_FW-LaO69BuIDG2bEFJ7-du5mZ-Ls4leImzdQ2IKuUkUPlxpbYJGsT0qw_VsG60bPFh8RsVkj5ZYB1rscYoqVXHrdT-yM7eDpzzQXb973Qh56x5hLA_M6ERSAgLBO2DOsH9jNF8E5SH2Okti9OD4NN8eqfQbHlHVwZ2rROBF704kELm7tsLAATn8mZd65S3AmwNv_yH6jGRe_HpSHWtvSm53yTZHzu-Kv");
+";
 
 fetch(API_URL + "?id=" + id)
 .then(res => res.json())
