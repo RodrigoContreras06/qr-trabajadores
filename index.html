@@ -62,7 +62,10 @@ document.getElementById("nombre").textContent = data.Nombre;
 document.getElementById("doc").textContent = data.Documento;
 document.getElementById("cargo").textContent = data.Cargo;
 document.getElementById("cap").textContent = data.Capacitacion;
-document.getElementById("fecha").textContent = data.Fecha;
+const fecha = new Date(data.Fecha);
+document.getElementById("fecha").textContent = 
+  fecha.toLocaleDateString("es-CO");
+
   })
   .catch(err => {
     alert("Error conectando con la base de datos");
