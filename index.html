@@ -37,9 +37,10 @@ h2 {
 <div class="card">
   <h2>PROGRAMA DE CALIFICACION DEL PERSONAL</h2>
   <div class="item"><span class="label">Nombre:</span> <span id="nombre"></span></div>
-  <div class="item"><span class="label">Documento:</span> <span id="doc"></span></div>
   <div class="item"><span class="label">Cargo:</span> <span id="cargo"></span></div>
    <h2>CAPACITACIONES VIGENTES:</h2>
+  <div class="item"><span class="label">Capacitación vigente:</span> <span id="cap"></span></div>
+  <div class="item"><span class="label">Fecha de realización:</span> <span id="fecha"></span></div>
 </div>
 
 <script>
@@ -47,7 +48,7 @@ const params = new URLSearchParams(window.location.search);
 const id = params.get("id");
 
 // ⚠️ Pega aquí TU URL real de Apps Script
-const API = "https://script.google.com/macros/s/AKfycbwvmI3NG-j3Wwdh_Yv_0_N2UFatnx3V_VSIx3vsXkc9cEQW7DDMvF7N6k1AH9aEKgfYhg/exec";
+const API = "https://script.google.com/macros/s/AKfycbyoNTQmJCw0c5lFraFn9lxIZ9kvoCWaM6g-I6s3mjhWYyrxH4Dyr9wM24hZbmxyAyRLmw/exec";
 
 fetch(API + "?id=" + id)
   .then(res => res.json())
@@ -56,13 +57,11 @@ fetch(API + "?id=" + id)
       alert(data.error);
       return;
     }
+document.getElementById("nombre").textContent = data.Nombre;
+document.getElementById("cargo").textContent = data.Cargo;
+document.getElementById("cap").textContent = data.Capacitacion;
+document.getElementById("fecha").textContent = data.Fecha;
 
-    document.getElementById("nombre").textContent = data.Nombre;
-    document.getElementById("doc").textContent = data.Identificación;
-    document.getElementById("sangre").textContent = data.TipoSangre;
-    document.getElementById("eps").textContent = data.EPS;
-    document.getElementById("cargo").textContent = data.Cargo;
-    document.getElementById("tel").textContent = data.ContactoEmergencia;
   })
   .catch(err => {
     alert("Error conectando con la base de datos");
