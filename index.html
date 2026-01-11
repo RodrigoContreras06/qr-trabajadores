@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Ficha del trabajador</title>
+
 <style>
 body {
   font-family: Arial;
@@ -28,6 +29,7 @@ h2 {
 }
 </style>
 </head>
+
 <body>
 
 <div class="card">
@@ -41,30 +43,31 @@ h2 {
 </div>
 
 <script>
-<script>
-  // Tomar el ID de la URL (del QR)
-  const params = new URLSearchParams(window.location.search);
-  const id = params.get("id");
+const params = new URLSearchParams(window.location.search);
+const id = params.get("id");
 
-  // Tu URL con CORS
-  const API_URL = "https://corsproxy.io/?" + encodeURIComponent("https://script.googleusercontent.com/macros/echo?user_content_key=AehSKLjFiY9hUuMZr4pW9LZ7fxH4L8gAJ9gxc0T6NxOZwtWz-i4c4aYkVcBjhB7qXJeCZngRjYP_FW-LaO69BuIDG2bEFJ7-du5mZ-Ls4leImzdQ2IKuUkUPlxpbYJGsT0qw_VsG60bPFh8RsVkj5ZYB1rscYoqVXHrdT-yM7eDpzzQXb973Qh56x5hLA_M6ERSAgLBO2DOsH9jNF8E5SH2Okti9OD4NN8eqfQbHlHVwZ2rROBF704kELm7tsLAATn8mZd65S3AmwNv_yH6jGRe_HpSHWtvSm53yTZHzu-Kv");
+// ⚠️ Pega aquí TU URL real de Apps Script
+const API = "https://script.google.com/macros/s/AKfycbwvmI3NG-j3Wwdh_Yv_0_N2UFatnx3V_VSIx3vsXkc9cEQW7DDMvF7N6k1AH9aEKgfYhg/exec";
 
-  // Pedir datos
-  fetch(API_URL + "&id=" + id)
-    .then(res => res.json())
-    .then(data => {
-      document.getElementById("nombre").textContent = data.Nombre;
-      document.getElementById("doc").textContent = data.Identificación;
-      document.getElementById("sangre").textContent = data.TipoSangre;
-      document.getElementById("eps").textContent = data.EPS;
-      document.getElementById("cargo").textContent = data.Cargo;
-      document.getElementById("tel").textContent = data.ContactoEmergencia;
-    })
-    .catch(err => {
-      console.error("Error al cargar la API:", err);
-    });
-</script>
+fetch(API + "?id=" + id)
+  .then(res => res.json())
+  .then(data => {
+    if (data.error) {
+      alert(data.error);
+      return;
+    }
 
+    document.getElementById("nombre").textContent = data.Nombre;
+    document.getElementById("doc").textContent = data.Identificación;
+    document.getElementById("sangre").textContent = data.TipoSangre;
+    document.getElementById("eps").textContent = data.EPS;
+    document.getElementById("cargo").textContent = data.Cargo;
+    document.getElementById("tel").textContent = data.ContactoEmergencia;
+  })
+  .catch(err => {
+    alert("Error conectando con la base de datos");
+    console.error(err);
+  });
 </script>
 
 </body>
