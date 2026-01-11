@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Ficha del trabajador</title>
+<style>
+body {
+  font-family: Arial;
+  background:#f2f2f2;
+  padding:20px;
+}
+.card {
+  background:white;
+  padding:20px;
+  border-radius:10px;
+  max-width:400px;
+  margin:auto;
+  box-shadow:0 0 10px rgba(0,0,0,0.2);
+}
+h2 {
+  text-align:center;
+}
+.item {
+  margin:10px 0;
+}
+.label {
+  font-weight:bold;
+}
+</style>
+</head>
+<body>
+
+<div class="card">
+  <h2>🪪 Ficha del trabajador</h2>
+  <div class="item"><span class="label">Nombre:</span> <span id="nombre"></span></div>
+  <div class="item"><span class="label">Documento:</span> <span id="doc"></span></div>
+  <div class="item"><span class="label">Tipo de sangre:</span> <span id="sangre"></span></div>
+  <div class="item"><span class="label">EPS:</span> <span id="eps"></span></div>
+  <div class="item"><span class="label">Cargo:</span> <span id="cargo"></span></div>
+  <div class="item"><span class="label">Emergencias:</span> <span id="tel"></span></div>
+</div>
+
+<script>
+const params = new URLSearchParams(window.location.search);
+const id = params.get("id");
+
+const API_URL = "https://script.googleusercontent.com/macros/echo?user_content_key=AehSKLiSuHRdnvbXiBIgKu4VDXRIVgTveMN-QBVuMgbQTGN9DN9QxLXE51u6L-JQDAaGfebpgWgmaJhq4SnxWtSw4hwkpuVanl31CjjF70Cg6GS7plZlB0GilA93n1tLTB-nAoqNN0071wjyjuMZ9ProovPWdBO46YXU3RMZjDClFezudZWQyfhUHOl7dMUCYjMUrRSP877HacsDd
+  lPcc-K2eHW5X3XCHrtwi2CvlERUIXXtG7bl3AH6uhaOxYyhduRxS8g3EvnO3PkWeVoC_nNlkOMycOMkkNzPKoTPmixY&lib=MlRpYdqkB5hM_CZ1Ay9kj7C5QW6e6C0Sl";
+
+fetch(API_URL + "?id=" + id)
+.then(res => res.json())
+.then(data => {
+  document.getElementById("nombre").textContent = data.Nombre;
+  document.getElementById("doc").textContent = data.Identificación;
+  document.getElementById("sangre").textContent = data.TipoSangre;
+  document.getElementById("eps").textContent = data.EPS;
+  document.getElementById("cargo").textContent = data.Cargo;
+  document.getElementById("tel").textContent = data.ContactoEmergencia;
+});
+</script>
+
+</body>
+</html>
